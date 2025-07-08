@@ -38,6 +38,7 @@
 
 <nav class="nav-container">
   <div class="nav-header">
+    <img src="/src/assets/logo.png" alt="Logo" class="site-logo" />
     <h1 class="logo">My Website</h1>
     
     <div class="dropdown">
@@ -88,6 +89,13 @@
     margin: 0;
     font-size: 1.5rem;
     font-weight: bold;
+  }
+
+  .site-logo {
+    height: 40px;
+    width: auto;
+    margin-right: 1rem;
+    vertical-align: middle;
   }
   
   .dropdown {
