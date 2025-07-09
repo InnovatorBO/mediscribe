@@ -39,7 +39,7 @@
 <nav class="nav-container">
   <div class="nav-header">
     <img src="/src/assets/logo.png" alt="Logo" class="site-logo" />
-    <h1 class="logo">My Website</h1>
+    <h1 class="logo">MediScribe</h1>
     
     <div class="dropdown">
       <button 
