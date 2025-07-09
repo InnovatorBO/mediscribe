@@ -1,5 +1,6 @@
 {
   "devDependencies": {
-    "rollup": "^4.44.2"
+    "rollup": "^4.44.2",
+    "vite": "^7.0.3"
   }
 }
