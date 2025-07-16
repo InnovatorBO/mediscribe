@@ -3,6 +3,7 @@
   import Home from './pages/Home.svelte'
   import About from './pages/About.svelte'
   import Contact from './pages/Contact.svelte'
+  import Converter from './pages/Converter.svelte'
 
   // Current page state
   let currentPage = 'home'
@@ -21,6 +22,8 @@
         return About
       case 'contact':
         return Contact
+      case 'converter':
+        return Converter
       default:
         return Home
     }
@@ -46,4 +49,4 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-</style> 
+</style>
