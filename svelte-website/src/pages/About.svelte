@@ -19,7 +19,10 @@
 <div class="page about-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
-    <p class="insert-content">This is the about page content. You can add information about your company here.</p>
+    <p class="insert-content">Both medical students and doctors have notoriously bad handwriting which could make people recieve the incorrect medicine or dosage for that medicine. For example, in a study done by Yimeng Zhang et al., 150 experienced medical students and 50 professional doctors prescribed 5 medications on a standard hospital prescription chart.</p>
+    <p class="insert-content">The results are as followed: “Handwriting quality was of print quality in 25% of both student and doctor participants, legible in 50%, but poorly legible in 25%. Prescription errors were committed by 92% of all participants, with a mean/median of 2 errors per participant.”</p>
+    <p class="insert-content">“111 errors were found in the transcription of the patient's name, identification, age, height, weight and allergies. 422 errors were identified in the prescriptions of the 5 given medications, including the omission of drug details in 53%, incorrect dosage in 49% and incorrect instructions for administration in 47% of prescriptions. ”</p>
+    <p class="insert-content">“Although 78% of participants admitted to being concerned with poor handwriting and would take appropriate action, 22% reported that they would choose to ignore illegible writing, an attitude that could potentially increase the risk of medication errors.”</p>
     <p class="page-info">Page ID: about</p>
   </div>
 </div>
