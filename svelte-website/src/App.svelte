@@ -41,7 +41,7 @@
 <style>
   main {
     min-height: 100vh;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Allerta', Georgia, 'Times New Roman', Times, serif;
   }
 
   .content {
