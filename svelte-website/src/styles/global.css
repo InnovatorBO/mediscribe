@@ -12,6 +12,10 @@ body {
   background-color: #f8f9fa;
 }
 
+button {
+  font-family: inherit;
+}
+
 /* Utility classes */
 .container {
   max-width: 1200px;
