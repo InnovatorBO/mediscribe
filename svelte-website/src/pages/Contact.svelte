@@ -7,7 +7,7 @@
   // Function to load content with animation
   function loadContent() {
     setTimeout(() => {
-      heading = 'Contact Information'
+      heading = 'Contact Us'
     }, 300)
   }
   

@@ -38,7 +38,7 @@
 
 <nav class="nav-container">
   <div class="nav-header">
-    <h1 class="logo">My Website</h1>
+    <img src="/mediscribe_logo.png" alt="Logo" class="logo-img"/>
     
     <div class="dropdown">
       <button 
@@ -70,7 +70,7 @@
 
 <style>
   .nav-container {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(#1f377fff);
     padding: 1rem 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
@@ -83,11 +83,9 @@
     margin: 0 auto;
   }
   
-  .logo {
-    color: white;
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: bold;
+  .logo-img {
+    height:55px;
+    object-fit: contain
   }
   
   .dropdown {
