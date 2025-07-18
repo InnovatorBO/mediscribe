@@ -19,8 +19,11 @@
 <div class="page contact-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
-    <p class="insert-content">This is the contact page content. You can add your contact information here.</p>
-    <p class="page-info">Page ID: contact</p>
+    <div class ="heading"> You can find us at</div>
+    <p class="insert-content">vel@velbranchout.org</p>
+    <div class ="heading"> Email us at</div>
+    <p class="insert-content">velbranchout@gmail.com</p>
+    <p class="page-info"></p>
   </div>
 </div>
 
@@ -59,4 +62,11 @@
     color: #95a5a6;
     font-style: italic;
   }
-</style> 
+
+  .heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1f377fff;
+  }
+
+</style>

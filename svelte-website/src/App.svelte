@@ -3,13 +3,14 @@
   import Home from './pages/Home.svelte'
   import About from './pages/About.svelte'
   import Contact from './pages/Contact.svelte'
+  import Converter from './pages/Converter.svelte'
 
   // Current page state
   let currentPage = 'home'
 
   // Function to change pages
   function changePage(event) {
-    currentPage = event.detail
+    currentPage = event.detail;
   }
 
   // Function to get current page component
@@ -21,6 +22,8 @@
         return About
       case 'contact':
         return Contact
+      case 'converter':
+        return Converter
       default:
         return Home
     }
@@ -36,13 +39,13 @@
 </main>
 
 <footer class="footer">
-  <img src="/mediscribe_logo.png" alt="Logo" class="footer-logo" />
+  <img src="/src/assets/mediscribe_logo.png" alt="Logo" class="footer-logo" />
 </footer>
 
 <style>
   main {
     min-height: 100vh;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Allerta', Georgia, 'Times New Roman', Times, serif;
   }
 
   .footer{
@@ -64,4 +67,4 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-</style> 
+</style>

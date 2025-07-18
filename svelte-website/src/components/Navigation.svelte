@@ -5,73 +5,43 @@
   
   export let currentPage = 'home'
   
-  // Dropdown state
-  let isDropdownOpen = false
-  
   // Menu items
   const menuItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
+    { id: 'converter', label: 'Converter'}
   ]
   
   // Function to handle page change
   function handlePageChange(pageId) {
     dispatch('changePage', pageId)
-    isDropdownOpen = false
-  }
-  
-  // Function to toggle dropdown
-  function toggleDropdown() {
-    isDropdownOpen = !isDropdownOpen
-  }
-  
-  // Function to close dropdown when clicking outside
-  function handleClickOutside(event) {
-    if (!event.target.closest('.nav-container')) {
-      isDropdownOpen = false
-    }
   }
 </script>
 
-<svelte:window on:click={handleClickOutside} />
-
 <nav class="nav-container">
   <div class="nav-header">
-    <img src="/mediscribe_logo.png" alt="Logo" class="logo-img"/>
+    <div class="logo-section">
+      <img src="/src/assets/mediscribe_logo.png" alt="Logo" class="site-logo logo" />
+    </div>
     
-    <div class="dropdown">
-      <button 
-        class="dropdown-toggle" 
-        on:click={toggleDropdown}
-        aria-expanded={isDropdownOpen}
-      >
-        {menuItems.find(item => item.id === currentPage)?.label || 'Menu'}
-        <span class="arrow">▼</span>
-      </button>
-      
-      {#if isDropdownOpen}
-        <ul class="dropdown-menu">
-          {#each menuItems as item}
-            <li>
-              <button 
-                class="dropdown-item {currentPage === item.id ? 'active' : ''}"
-                on:click={() => handlePageChange(item.id)}
-              >
-                {item.label}
-              </button>
-            </li>
-          {/each}
-        </ul>
-      {/if}
+    <div class="nav-menu">
+      {#each menuItems as item}
+        <button 
+          class="nav-item {currentPage === item.id ? 'active' : ''}"
+          on:click={() => handlePageChange(item.id)}
+        >
+          {item.label}
+        </button>
+      {/each}
     </div>
   </div>
 </nav>
 
 <style>
   .nav-container {
-    background: linear-gradient(#1f377fff);
-    padding: 1rem 2rem;
+    background: #1f377fff;
+    padding: 0.75rem 2rem;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   }
   
@@ -82,88 +52,85 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-  
-  .logo-img {
-    height:55px;
-    object-fit: contain
-  }
-  
-  .dropdown {
-    position: relative;
-  }
-  
-  .dropdown-toggle {
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
+
+  .logo-section {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
   }
   
-  .dropdown-toggle:hover {
-    background: rgba(255,255,255,0.3);
-    transform: translateY(-2px);
-  }
-  
-  .arrow {
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-  }
-  
-  .dropdown-toggle[aria-expanded="true"] .arrow {
-    transform: rotate(180deg);
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    padding: 0.5rem 0;
-    margin-top: 0.5rem;
-    min-width: 150px;
-    list-style: none;
-    z-index: 1000;
-    animation: slideDown 0.3s ease;
-  }
-  
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .dropdown-item {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: none;
-    background: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #333;
-    transition: background-color 0.2s ease;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .dropdown-item.active {
-    background-color: #667eea;
+  .logo {
     color: white;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
   }
-</style> 
+
+  .site-logo {
+    height: 50px;
+    width: auto;
+    vertical-align: middle;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .nav-item {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .nav-item:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .nav-item.active {
+    background: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.4);
+    font-weight: 600;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .nav-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .nav-menu {
+      gap: 0.5rem;
+    }
+    
+    .nav-item {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav-container {
+      padding: 0.5rem 1rem;
+    }
+    
+    .nav-menu {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .nav-item {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>
