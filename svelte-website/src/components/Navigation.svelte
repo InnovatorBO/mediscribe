@@ -1,6 +1,15 @@
 <script>
   import { createEventDispatcher } from 'svelte'
-  
+  import { onMount } from 'svelte'
+  import imgUrl from '../assets/logo.png'
+
+  onMount (() => {
+    const logoElement = document.getElementById('logo');
+    if (logoElement) {
+      logoElement.src = imgUrl;
+    }
+  });
+
   const dispatch = createEventDispatcher()
   
   export let currentPage = 'home'
@@ -22,7 +31,7 @@
 <nav class="nav-container">
   <div class="nav-header">
     <div class="logo-section">
-      <img src="/src/assets/logo.png" alt="Logo" class="site-logo" />
+      <img alt="Logo" id="logo" class="site-logo" />
     </div>
     
     <div class="nav-menu">
