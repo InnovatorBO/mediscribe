@@ -31,7 +31,7 @@
 <nav class="nav-container">
   <div class="nav-header">
     <div class="logo-section">
-      <img alt="Logo" id="logo" class="site-logo" />
+      <img src="/src/assets/mediscribe_logo.png" alt="Logo" class="site-logo logo" />
     </div>
     
     <div class="nav-menu">
@@ -61,7 +61,7 @@
     max-width: 1200px;
     margin: 0 auto;
   }
-  
+
   .logo-section {
     display: flex;
     align-items: center;

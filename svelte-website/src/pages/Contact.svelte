@@ -19,9 +19,9 @@
 <div class="page contact-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
-    <div class = "heading"> You can find us at</div>
+    <div class ="heading"> You can find us at</div>
     <p class="insert-content">vel@velbranchout.org</p>
-    <div class = "heading"> Email us at</div>
+    <div class ="heading"> Email us at</div>
     <p class="insert-content">velbranchout@gmail.com</p>
     <p class="page-info"></p>
   </div>
@@ -66,7 +66,7 @@
   .heading {
     font-size: 24px;
     font-weight: bold;
-    font-color: #1f377fff;
+    color: #1f377fff;
   }
 
 </style>

@@ -2,7 +2,10 @@
   import { onMount } from 'svelte'
   import Button from "../components/button.svelte";
   import Converter from './Converter.svelte'
+  import { createEventDispatcher } from 'svelte'
 
+  const dispatch = createEventDispatcher()
+  let clicked = false;
   let heading = ''
   
   function loadContent() {
@@ -11,6 +14,12 @@
     }, 300)
   }
   
+  function handleClick() {
+    clicked=true
+    setTimeout(() => clicked=false, 300);
+    dispatchEvent('changePage', 'converter')
+  }
+
   onMount(() => {
     loadContent()
   })
@@ -26,7 +35,7 @@
       case 'converter':
         return Converter
       default:
-        return Home
+        return getCurrentPage
     }
   }
   
@@ -52,12 +61,6 @@
           <span class="stat-highlight">30,000 deaths annually</span>
           <p>Illegible doctor's handwriting contributes to medical errors, which are estimated to cause up to 30,000 deaths each year in Britain.</p>
         </div>
-      </div>
-    </div>
-
-    <div class="my-div">
-      <div class="flex flex-wrap items-center gap-2 md:flex-row">
-        <Button>Try It Out for Free!</Button>
       </div>
     </div>
 
@@ -88,7 +91,9 @@
         </div>
       </div>
     </div>
-
+      <button on:click={handleClick} class="nav-button">
+      Try it out for Free!
+    </button>
   </div>
 </div>
 
@@ -96,39 +101,66 @@
   .home-page {
     animation: fadeIn 0.5s ease-in;
   }
-  
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  
+
   .content-section {
     text-align: center;
     padding: 4rem 2rem;
     max-width: 800px;
     margin: 0 auto;
   }
-  
+
+  .nav-button {
+    background-color: #1f377fff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 2rem;
+    font-family: Oswald, sans-serif;
+    transition: background-color 0.3s ease;
+    margin-top: 2rem;
+  }
+
+  .nav-button:hover {
+    background-color: #1f377fff;
+  }
+
   .page-heading {
     font-size: 2.5rem;
-    color: #2c3e50;
+    color: #1f377fff;
     margin-bottom: 2rem;
     font-weight: 700;
   }
-  
+
+  .nav-button-clicked {
+    animation: clickPop 0.3s ease;
+  }
+
+  @keyframes clickPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.92); }
+    100% { transform: scale(1); }
+  }
+
   .insert-content {
     font-size: 1.2rem;
     color: #7f8c8d;
     margin-bottom: 3rem;
   }
-  
+
   .stats-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
   }
-  
+
   .stat-block {
     background: linear-gradient(135deg, #27449b, #1f377fff);
     border-radius: 12px;
@@ -137,16 +169,16 @@
     box-shadow: 0 8px 25px rgb(28, 50, 117);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  
+
   .stat-block:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 35px rgb(39, 72, 172);
   }
-  
+
   .stat-content {
     text-align: left;
   }
-  
+
   .stat-highlight {
     display: block;
     font-size: 1.5rem;
@@ -154,7 +186,7 @@
     margin-bottom: 1rem;
     color: #fff;
   }
-  
+
   .stat-block p {
     font-size: 1rem;
     line-height: 1.5;
@@ -171,7 +203,7 @@
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .example-block {
     background: linear-gradient(135deg, #efefef, #d1d1d1);
     border-radius: 12px;
@@ -183,16 +215,16 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .example-block:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 35px rgb(39, 72, 172);
   }
-  
+
   .example-content {
     text-align: left;
   }
-  
+
   .example-highlight {
     display: block;
     font-size: 1.5rem;
@@ -200,7 +232,7 @@
     margin-bottom: 1rem;
     color: #fff;
   }
-  
+
   .example-block p {
     font-size: 1rem;
     line-height: 1.5;
@@ -209,7 +241,7 @@
   }
 
   .my-div {
-    font-size: 1.5 rem;
+    font-size: 1.5rem;
     border: 4px solid black;
     border-radius: 12px;
     background-color: white;
