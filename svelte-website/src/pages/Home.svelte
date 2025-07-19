@@ -1,26 +1,94 @@
 <script>
   import { onMount } from 'svelte'
-  
-  // Dynamic content using JavaScript
+  import Button from "../components/button.svelte";
+  import Converter from './Converter.svelte'
+
   let heading = ''
   
-  // Function to load content with animation
   function loadContent() {
     setTimeout(() => {
-      heading = 'Welcome to Home Page'
+      heading = 'Introducing an AI-powered Doctors Handwriting Recognition Model'
     }, 300)
   }
   
   onMount(() => {
     loadContent()
   })
+
+  let currentPage = 'home'
+
+  function changePage(event) {
+    currentPage = event.detail
+  }
+
+  function getCurrentPage() {
+    switch (currentPage) {
+      case 'converter':
+        return Converter
+      default:
+        return Home
+    }
+  }
+  
+  // const dispatch = createEventDispatcher();
+
 </script>
 
 <div class="page home-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
-    <p class="insert-content">This is the home page content. You can add your main content here.</p>
-    <p class="page-info">Page ID: home</p>
+    <p class="insert-content">MediScribe is an AI tool that converts messy handwriting - especially from doctors - into digital easy-to-read text. MediScribe helps reduce errors and miscommunication in healthcare by making notes and prescriptions easier to read, improving organization and safety in healthcare.</p>
+    
+    <div class="stats-container">
+      <div class="stat-block">
+        <div class="stat-content">
+          <span class="stat-highlight">1.5 million injuries</span>
+          <p>Each year, doctors' messy and illegible handwriting leads to 1.5 million injuries and contributes to over 7,000 deaths in the U.S.</p>
+        </div>
+      </div>
+      
+      <div class="stat-block">
+        <div class="stat-content">
+          <span class="stat-highlight">30,000 deaths annually</span>
+          <p>Illegible doctor's handwriting contributes to medical errors, which are estimated to cause up to 30,000 deaths each year in Britain.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-div">
+      <div class="flex flex-wrap items-center gap-2 md:flex-row">
+        <Button>Try It Out for Free!</Button>
+      </div>
+    </div>
+
+    <!-- <Navigation {currentPage} on:changePage={changePage} /> -->
+  
+    <!-- <div class="content">
+      <svelte:component this={getCurrentPage()} />
+    </div> -->
+
+    <div class="examples">
+      <div class="examples-container">
+        <div class="example-block">
+          <div class="example-content">
+            <p>Example 1</p>
+          </div>
+        </div>
+      
+        <div class="example-block">
+          <div class="example-content">
+            <p>Example 2</p>
+          </div>
+        </div>
+
+        <div class="example-block">
+          <div class="example-content">
+            <p>Illegible doctor's handwriting contributes to medical errors, which are estimated to cause up to 30,000 deaths each year in Britain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -51,12 +119,110 @@
   .insert-content {
     font-size: 1.2rem;
     color: #7f8c8d;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
   }
   
+  .stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .stat-block {
+    background: linear-gradient(135deg, #27449b, #1f377fff);
+    border-radius: 12px;
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 8px 25px rgb(28, 50, 117);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .stat-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgb(39, 72, 172);
+  }
+  
+  .stat-content {
+    text-align: left;
+  }
+  
+  .stat-highlight {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  .stat-block p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .examples-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .example-block {
+    background: linear-gradient(135deg, #efefef, #d1d1d1);
+    border-radius: 12px;
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 8px 25px rgb(28, 50, 117);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgb(39, 72, 172);
+  }
+  
+  .example-content {
+    text-align: left;
+  }
+  
+  .example-highlight {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+  
+  .example-block p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #000000f2;
+  }
+
+  .my-div {
+    font-size: 1.5 rem;
+    border: 4px solid black;
+    border-radius: 12px;
+    background-color: white;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 75px;
+    margin-top: 75px;
+  }
+
   .page-info {
     font-size: 1rem;
     color: #95a5a6;
     font-style: italic;
   }
-</style> 
+</style>
