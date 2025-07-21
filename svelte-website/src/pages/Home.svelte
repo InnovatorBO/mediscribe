@@ -17,7 +17,7 @@
   function handleClick() {
     clicked=true
     setTimeout(() => clicked=false, 300);
-    dispatchEvent('changePage', 'converter')
+    dispatch('changePage', 'converter')
   }
 
   onMount(() => {

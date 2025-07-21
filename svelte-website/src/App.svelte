@@ -34,7 +34,7 @@
   <Navigation {currentPage} on:changePage={changePage} />
   
   <div class="content">
-    <svelte:component this={getCurrentPage()} />
+    <svelte:component this={getCurrentPage()} on:changePage={changePage} />
   </div>
 </main>
 
