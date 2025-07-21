@@ -1,14 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte'
-  import { onMount } from 'svelte'
-  import imgUrl from '../assets/mediscribe_logo.png'
-
-  onMount (() => {
-    const logoElement = document.getElementById('logo');
-    if (logoElement) {
-      logoElement.src = imgUrl;
-    }
-  });
+  import logo from '../assets/mediscribe_logo.png'
 
   const dispatch = createEventDispatcher()
   
@@ -31,7 +23,7 @@
 <nav class="nav-container">
   <div class="nav-header">
     <div class="logo-section">
-      <img id='logo' alt="Logo" class="site-logo logo" />
+      <img src={logo} alt="Logo" class="site-logo logo" />
     </div>
     
     <div class="nav-menu">
