@@ -9,8 +9,7 @@
   let conversionStatus = ''
   let convertedData = null
   let selectedMedicine = null
-  $: console.log(selectedMedicine);
-  
+    
   function loadContent() {
     setTimeout(() => {
       heading = 'Prescription Reader'

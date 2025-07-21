@@ -4,6 +4,7 @@
   import About from './pages/About.svelte'
   import Contact from './pages/Contact.svelte'
   import Converter from './pages/Converter.svelte'
+  import logo from './assets/mediscribe_logo.png';
 
   // Current page state
   let currentPage = 'home'
@@ -39,7 +40,7 @@
 </main>
 
 <footer class="footer">
-  <img src="/src/assets/mediscribe_logo.png" alt="Logo" class="footer-logo" />
+  <img src="{logo}" alt="Logo" class="footer-logo" />
 </footer>
 
 <style>
