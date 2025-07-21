@@ -31,7 +31,7 @@
 <nav class="nav-container">
   <div class="nav-header">
     <div class="logo-section">
-      <img src="/src/assets/mediscribe_logo.png" alt="Logo" class="site-logo logo" />
+      <img id='logo' alt="Logo" class="site-logo logo" />
     </div>
     
     <div class="nav-menu">
