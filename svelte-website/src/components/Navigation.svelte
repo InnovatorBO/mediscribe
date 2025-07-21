@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte'
   import { onMount } from 'svelte'
-  import imgUrl from '../assets/logo.png'
+  import imgUrl from '../assets/mediscribe_logo.png'
 
   onMount (() => {
     const logoElement = document.getElementById('logo');
