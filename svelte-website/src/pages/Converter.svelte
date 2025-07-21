@@ -1,11 +1,15 @@
 <script>
   import { onMount } from 'svelte'
+  import Select from 'svelte-select'
+  import { medicines } from '../data/medicines.js'
   
   let heading = ''
   let selectedFile = null
   let isDragOver = false
   let conversionStatus = ''
   let convertedData = null
+  let selectedMedicine = null
+  $: console.log(selectedMedicine);
   
   function loadContent() {
     setTimeout(() => {
@@ -156,7 +160,40 @@
       </div>
     {/if}
     
-    <p class="page-info"></p>
+    <div class="section-break">
+      <label>Common Medicines:</label>
+      <Select
+        items={medicines}
+        bind:value={selectedMedicine}
+        placeholder="Select a medicine"
+      />
+
+      {#if selectedMedicine}
+        <div class="medicine-info">
+          {#if selectedMedicine.image}
+              <img
+                src={selectedMedicine.image}
+                alt={selectedMedicine.label}
+                class="medicine-image"
+              />
+          {/if}
+
+          <div class="medicine-details">
+            <h2>{selectedMedicine.label}</h2>
+            <p><strong>Generic Name:</strong> {selectedMedicine.genericName}</p>
+            <p><strong>Description:</strong> {selectedMedicine.description}</p>
+            <p><strong>Uses:</strong> {selectedMedicine.uses}</p>
+            <p><strong>Dosage Amount:</strong></p>
+            <ul>
+              {#each selectedMedicine.dosageRange as effect}
+                <li>{effect}</li>
+              {/each}
+            </ul>
+            <p><strong>Side Effects:</strong> {selectedMedicine.sideEffects}</p>
+          </div>
+        </div>
+      {/if}
+    </div>
   </div>
 </div>
 
@@ -336,11 +373,56 @@
     color: #2c3e50;
   }
   
-  .page-info {
-    font-size: 1rem;
-    color: #95a5a6;
-    font-style: italic;
-    margin-top: 3rem;
+  .section-break {
+    margin-top: 4rem;
+    border-top: 2px solid #ddd;
+    padding-top: 2rem; 
+  }
+
+  .medicine-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 6px;
+    max-width: 800px;
+    text-align: left;
+  }
+
+  .medicine-image {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    background: white;
+    }
+
+  .medicine-details {
+    border-left: 4px solid #0077cc;
+    padding-left: 1rem;
+    flex: 1;
+    text-align: left;
+  }
+
+  .medicine-details strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #0077cc;
+    font-weight: 700;
+  }
+
+  ul {
+    margin: 0.25rem 0 0 1.25rem;
+  }
+
+  .medicine-details p,
+  .medicine-details ul {
+    margin-bottom: 1rem; /* adds space below each paragraph and list */
   }
   
   @media (max-width: 600px) {
