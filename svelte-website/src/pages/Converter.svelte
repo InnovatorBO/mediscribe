@@ -1,5 +1,7 @@
 <script>
   import { onMount } from 'svelte'
+  import { createEventDispatcher } from 'svelte'
+  const dispatch = createEventDispatcher()
   
   let heading = ''
   let selectedFile = null
@@ -42,24 +44,38 @@
     }
   }
   
-  function convertFile() {
+  async function convertFile() {
     if (!selectedFile) {
-      conversionStatus = 'Please select a file first'
-      return
+      conversionStatus = 'Please select a file first';
+      return;
     }
-    
-    conversionStatus = 'Converting...'
-    
-    setTimeout(() => {
+
+    conversionStatus = 'Uploading...';
+
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    try {
+      const response = await fetch('https://mediscribe-backend.onrender.com/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        throw new Error('Server error');
+      }
+
+      const result = await response.json();
       convertedData = {
         originalName: selectedFile.name,
-        originalSize: selectedFile.size,
-        convertedName: selectedFile.name.replace(/\.[^/.]+$/, '_converted.txt'),
-        convertedSize: Math.floor(selectedFile.size * 0.8)
-      }
-      conversionStatus = 'Conversion completed!'
-    }, 2000)
+        prediction: result.prediction  // Assuming Flask returns {'prediction': 'Metformin'}
+      };
+      conversionStatus = 'Conversion completed!';
+    } catch (error) {
+      conversionStatus = `Error: ${error.message}`;
+    }
   }
+
   
   function downloadConverted() {
     const blob = new Blob(['This is your converted file content.'], { type: 'text/plain' })
@@ -78,17 +94,25 @@
     const fileInput = document.getElementById('fileInput')
     if (fileInput) fileInput.value = ''
   }
+
+  function goBack() {
+    dispatch('changePage', 'home')
+  }
   
   onMount(() => {
     loadContent()
   })
+  
+  function reloadHome() {
+    window.location.href = '/';
+  }
 </script>
 
 <div class="page converter">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
-    
-    <div 
+    <button on:click={reloadHome}>← Back to Home</button>
+    <div
       class="upload-area {isDragOver ? 'drag-over' : ''}"
       on:dragover={handleDragOver}
       on:dragleave={handleDragLeave}
@@ -141,21 +165,13 @@
       </div>
     {/if}
     
-    {#if convertedData}
-      <div class="converted-info">
-        <h3>Conversion Results:</h3>
-        <p><strong>Original:</strong> {convertedData.originalName} ({(convertedData.originalSize / 1024).toFixed(2)} KB)</p>
-        <p><strong>Converted:</strong> {convertedData.convertedName} ({(convertedData.convertedSize / 1024).toFixed(2)} KB)</p>
-        
-        <button 
-          class="btn btn-success" 
-          on:click={downloadConverted}
-        >
-          Download Converted File
-        </button>
-      </div>
-    {/if}
-    
+  {#if convertedData}
+    <div class="converted-info">
+      <h3>Prediction:</h3>
+      <p><strong>File:</strong> {convertedData.originalName}</p>
+      <p><strong>Predicted Medicine:</strong> {convertedData.prediction}</p>
+    </div>
+  {/if}
     <p class="page-info"></p>
   </div>
 </div>

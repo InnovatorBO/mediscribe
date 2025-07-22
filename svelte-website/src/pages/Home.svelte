@@ -15,9 +15,7 @@
   }
   
   function handleClick() {
-    clicked=true
-    setTimeout(() => clicked=false, 300);
-    dispatchEvent('changePage', 'converter')
+    dispatch('changePage', 'converter')
   }
 
   onMount(() => {
@@ -33,16 +31,20 @@
   function getCurrentPage() {
     switch (currentPage) {
       case 'converter':
-        return Converter
+        return Converter;
       default:
-        return getCurrentPage
+        return null;
     }
   }
+
+  onMount(() => {
+    loadContent();
+  });
   
   // const dispatch = createEventDispatcher();
 
 </script>
-
+{#if currentPage === 'home'}
 <div class="page home-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
@@ -69,6 +71,23 @@
     <!-- <div class="content">
       <svelte:component this={getCurrentPage()} />
     </div> -->
+    <div class = "button-container">
+      <Button to="converter" on:changePage={changePage}   style="
+      background-color: #1f377f;
+      color: white;
+      font-size: 1.8rem;
+      padding: 1.25rem 2.5rem;
+      font-weight: bold;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      ">
+        Try it out for Free!
+      </Button>
+    </div>
 
     <div class="examples">
       <div class="examples-container">
@@ -86,16 +105,16 @@
 
         <div class="example-block">
           <div class="example-content">
-            <p>Illegible doctor's handwriting contributes to medical errors, which are estimated to cause up to 30,000 deaths each year in Britain.</p>
+            <p>Example 3</p>
           </div>
         </div>
       </div>
-    </div>
-      <button on:click={handleClick} class="nav-button">
-      Try it out for Free!
-    </button>
+      </div>
+      </div>
   </div>
-</div>
+  {:else}
+      <svelte:component this={getCurrentPage()} />
+{/if}
 
 <style>
   .home-page {
@@ -257,4 +276,13 @@
     color: #95a5a6;
     font-style: italic;
   }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    font-size: 3rem;
+  }
+
 </style>
