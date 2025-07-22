@@ -8,7 +8,8 @@
   let isDragOver = false
   let conversionStatus = ''
   let convertedData = null
-  
+  let selectedMedicine = null
+    
   function loadContent() {
     setTimeout(() => {
       heading = 'Prescription Reader'
@@ -352,11 +353,56 @@
     color: #2c3e50;
   }
   
-  .page-info {
-    font-size: 1rem;
-    color: #95a5a6;
-    font-style: italic;
-    margin-top: 3rem;
+  .section-break {
+    margin-top: 4rem;
+    border-top: 2px solid #ddd;
+    padding-top: 2rem; 
+  }
+
+  .medicine-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 6px;
+    max-width: 800px;
+    text-align: left;
+  }
+
+  .medicine-image {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    background: white;
+    }
+
+  .medicine-details {
+    border-left: 4px solid #0077cc;
+    padding-left: 1rem;
+    flex: 1;
+    text-align: left;
+  }
+
+  .medicine-details strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #0077cc;
+    font-weight: 700;
+  }
+
+  ul {
+    margin: 0.25rem 0 0 1.25rem;
+  }
+
+  .medicine-details p,
+  .medicine-details ul {
+    margin-bottom: 1rem; /* adds space below each paragraph and list */
   }
   
   @media (max-width: 600px) {
