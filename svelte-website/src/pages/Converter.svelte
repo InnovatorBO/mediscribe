@@ -1,6 +1,8 @@
 <script>
   import { onMount } from 'svelte'
   import { createEventDispatcher } from 'svelte'
+  import Select from 'svelte-select'
+  import { medicines } from '../data/medicines.js'
   const dispatch = createEventDispatcher()
   
   let heading = ''
@@ -173,8 +175,41 @@
       <p><strong>Predicted Medicine:</strong> {convertedData.prediction}</p>
     </div>
   {/if}
-    <p class="page-info"></p>
-  </div>
+  <div class="section-break">
+      <label>Common Medicines:</label>
+      <Select
+        items={medicines}
+        bind:value={selectedMedicine}
+        placeholder="Select a medicine"
+      />
+
+      {#if selectedMedicine}
+        <div class="medicine-info">
+          {#if selectedMedicine.image}
+              <img
+                src={selectedMedicine.image}
+                alt={selectedMedicine.label}
+                class="medicine-image"
+              />
+          {/if}
+
+          <div class="medicine-details">
+            <h2>{selectedMedicine.label}</h2>
+            <p><strong>Generic Name:</strong> {selectedMedicine.genericName}</p>
+            <p><strong>Description:</strong> {selectedMedicine.description}</p>
+            <p><strong>Uses:</strong> {selectedMedicine.uses}</p>
+            <p><strong>Dosage Amount:</strong></p>
+            <ul>
+              {#each selectedMedicine.dosageRange as effect}
+                <li>{effect}</li>
+              {/each}
+            </ul>
+            <p><strong>Side Effects:</strong> {selectedMedicine.sideEffects}</p>
+          </div>
+        </div>
+      {/if}
+    </div>
+</div>
 </div>
 
 <style>
