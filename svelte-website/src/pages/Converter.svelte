@@ -131,7 +131,7 @@
           id="fileInput"
           class="file-input"
           on:change={handleFileSelect}
-          accept=".txt,.csv,.json,.xml"
+          accept=".jpg,.jpeg,.png,image/jpeg,image/png"
         />
       </div>
     </div>
