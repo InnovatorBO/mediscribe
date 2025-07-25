@@ -11,6 +11,7 @@
   let conversionStatus = ''
   let convertedData = null
   let selectedMedicine = null
+  let isLoading = false
     
   function loadContent() {
     setTimeout(() => {
@@ -21,8 +22,22 @@
   function handleFileSelect(event) {
     const file = event.target.files[0]
     if (file) {
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff']
+      if (!validTypes.includes(file.type)) {
+        conversionStatus = 'Error: Please select a valid image file (JPG, PNG, GIF, BMP, TIFF)'
+        return
+      }
+      
+      // Validate file size (max 10MB)
+      if (file.size > 10 * 1024 * 1024) {
+        conversionStatus = 'Error: File size must be less than 10MB'
+        return
+      }
+      
       selectedFile = file
       conversionStatus = `Selected: ${file.name}`
+      convertedData = null // Reset previous results
     }
   }
   
@@ -42,58 +57,67 @@
     
     const files = event.dataTransfer.files
     if (files.length > 0) {
-      selectedFile = files[0]
+      const file = files[0]
+      
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff']
+      if (!validTypes.includes(file.type)) {
+        conversionStatus = 'Error: Please drop a valid image file (JPG, PNG, GIF, BMP, TIFF)'
+        return
+      }
+      
+      selectedFile = file
       conversionStatus = `Selected: ${selectedFile.name}`
+      convertedData = null // Reset previous results
     }
   }
   
   async function convertFile() {
     if (!selectedFile) {
-      conversionStatus = 'Please select a file first';
-      return;
+      conversionStatus = 'Please select a file first'
+      return
     }
 
-    conversionStatus = 'Uploading...';
+    isLoading = true
+    conversionStatus = 'Processing image...'
 
-    const formData = new FormData();
-    formData.append('file', selectedFile);
+    const formData = new FormData()
+    formData.append('file', selectedFile)
 
     try {
       const response = await fetch('https://mediscribe-backend.onrender.com/predict', {
         method: 'POST',
         body: formData
-      });
+      })
+
+      const result = await response.json()
 
       if (!response.ok) {
-        throw new Error('Server error');
+        throw new Error(result.error || 'Server error')
       }
 
-      const result = await response.json();
       convertedData = {
         originalName: selectedFile.name,
-        prediction: result.prediction  // Assuming Flask returns {'prediction': 'Metformin'}
-      };
-      conversionStatus = 'Conversion completed!';
+        prediction: result.prediction,
+        confidence: result.confidence
+      }
+      
+      conversionStatus = `Analysis completed! Confidence: ${(result.confidence * 100).toFixed(1)}%`
+      
     } catch (error) {
-      conversionStatus = `Error: ${error.message}`;
+      console.error('Conversion error:', error)
+      conversionStatus = `Error: ${error.message}`
+      convertedData = null
+    } finally {
+      isLoading = false
     }
-  }
-
-  
-  function downloadConverted() {
-    const blob = new Blob(['This is your converted file content.'], { type: 'text/plain' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = convertedData.convertedName
-    a.click()
-    URL.revokeObjectURL(url)
   }
   
   function resetConverter() {
     selectedFile = null
     convertedData = null
     conversionStatus = ''
+    isLoading = false
     const fileInput = document.getElementById('fileInput')
     if (fileInput) fileInput.value = ''
   }
@@ -102,19 +126,20 @@
     dispatch('changePage', 'home')
   }
   
+  function reloadHome() {
+    window.location.href = '/'
+  }
+  
   onMount(() => {
     loadContent()
   })
-  
-  function reloadHome() {
-    window.location.href = '/';
-  }
 </script>
 
 <div class="page converter">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
-    <button on:click={reloadHome}>← Back to Home</button>
+    <button on:click={reloadHome} class="back-button">← Back to Home</button>
+    
     <div
       class="upload-area {isDragOver ? 'drag-over' : ''}"
       on:dragover={handleDragOver}
@@ -125,13 +150,14 @@
         <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
           <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
         </svg>
-        <p class="upload-text">Drag and drop your file here, or click to browse</p>
+        <p class="upload-text">Drag and drop your prescription image here, or click to browse</p>
+        <p class="upload-subtext">Supported formats: JPG, PNG, GIF, BMP, TIFF (Max 10MB)</p>
         <input 
           type="file" 
           id="fileInput"
           class="file-input"
           on:change={handleFileSelect}
-          accept=".txt,.csv,.json,.xml"
+          accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff,image/*"
         />
       </div>
     </div>
@@ -139,9 +165,20 @@
     {#if selectedFile}
       <div class="file-info">
         <h3>Selected File:</h3>
-        <p><strong>Name:</strong> {selectedFile.name}</p>
-        <p><strong>Size:</strong> {(selectedFile.size / 1024).toFixed(2)} KB</p>
-        <p><strong>Type:</strong> {selectedFile.type || 'Unknown'}</p>
+        <div class="file-preview">
+          {#if selectedFile.type.startsWith('image/')}
+            <img 
+              src={URL.createObjectURL(selectedFile)} 
+              alt="Preview" 
+              class="image-preview"
+            />
+          {/if}
+          <div class="file-details">
+            <p><strong>Name:</strong> {selectedFile.name}</p>
+            <p><strong>Size:</strong> {(selectedFile.size / 1024).toFixed(2)} KB</p>
+            <p><strong>Type:</strong> {selectedFile.type || 'Unknown'}</p>
+          </div>
+        </div>
       </div>
     {/if}
     
@@ -149,48 +186,68 @@
       <button 
         class="btn btn-primary" 
         on:click={convertFile}
-        disabled={!selectedFile || conversionStatus === 'Converting...'}
+        disabled={!selectedFile || isLoading}
       >
-        {conversionStatus === 'Converting...' ? 'Converting...' : 'Convert File'}
+        {#if isLoading}
+          <span class="spinner"></span>
+          Processing...
+        {:else}
+          Analyze Prescription
+        {/if}
       </button>
       
       <button 
         class="btn btn-secondary" 
         on:click={resetConverter}
+        disabled={isLoading}
       >
         Reset
       </button>
     </div>
     
     {#if conversionStatus}
-      <div class="status-message {conversionStatus.includes('completed') ? 'success' : ''}">
+      <div class="status-message {conversionStatus.includes('completed') || conversionStatus.includes('Confidence') ? 'success' : conversionStatus.includes('Error') ? 'error' : ''}">
         {conversionStatus}
       </div>
     {/if}
     
-  {#if convertedData}
-    <div class="converted-info">
-      <h3>Prediction:</h3>
-      <p><strong>File:</strong> {convertedData.originalName}</p>
-      <p><strong>Predicted Medicine:</strong> {convertedData.prediction}</p>
-    </div>
-  {/if}
-  <div class="section-break">
-      <label>Common Medicines:</label>
+    {#if convertedData}
+      <div class="converted-info">
+        <h3>OCR Analysis Results:</h3>
+        <div class="result-grid">
+          <div class="result-item">
+            <strong>Original File:</strong>
+            <span>{convertedData.originalName}</span>
+          </div>
+          <div class="result-item">
+            <strong>Detected Medicine:</strong>
+            <span class="medicine-name">{convertedData.prediction}</span>
+          </div>
+          <div class="result-item">
+            <strong>Confidence Level:</strong>
+            <span class="confidence">{(convertedData.confidence * 100).toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+    {/if}
+
+    <div class="section-break">
+      <label for="medicine-select">Browse Common Medicines:</label>
       <Select
+        id="medicine-select"
         items={medicines}
         bind:value={selectedMedicine}
-        placeholder="Select a medicine"
+        placeholder="Select a medicine to view details"
       />
 
       {#if selectedMedicine}
         <div class="medicine-info">
           {#if selectedMedicine.image}
-              <img
-                src={selectedMedicine.image}
-                alt={selectedMedicine.label}
-                class="medicine-image"
-              />
+            <img
+              src={selectedMedicine.image}
+              alt={selectedMedicine.label}
+              class="medicine-image"
+            />
           {/if}
 
           <div class="medicine-details">
@@ -198,10 +255,10 @@
             <p><strong>Generic Name:</strong> {selectedMedicine.genericName}</p>
             <p><strong>Description:</strong> {selectedMedicine.description}</p>
             <p><strong>Uses:</strong> {selectedMedicine.uses}</p>
-            <p><strong>Dosage Amount:</strong></p>
+            <p><strong>Dosage Information:</strong></p>
             <ul>
-              {#each selectedMedicine.dosageRange as effect}
-                <li>{effect}</li>
+              {#each selectedMedicine.dosageRange as dosage}
+                <li>{dosage}</li>
               {/each}
             </ul>
             <p><strong>Side Effects:</strong> {selectedMedicine.sideEffects}</p>
@@ -209,7 +266,7 @@
         </div>
       {/if}
     </div>
-</div>
+  </div>
 </div>
 
 <style>
@@ -232,8 +289,22 @@
   .page-heading {
     font-size: 2.5rem;
     color: #2c3e50;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     font-weight: 700;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+  }
+  
+  .back-button:hover {
+    text-decoration: underline;
   }
   
   .upload-area {
@@ -273,6 +344,12 @@
     margin: 0;
   }
   
+  .upload-subtext {
+    font-size: 0.9rem;
+    color: #95a5a6;
+    margin: 0;
+  }
+  
   .file-input {
     position: absolute;
     top: 0;
@@ -296,7 +373,21 @@
     color: #2c3e50;
   }
   
-  .file-info p {
+  .file-preview {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .image-preview {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .file-details p {
     margin: 0.5rem 0;
     color: #34495e;
   }
@@ -318,6 +409,10 @@
     font-weight: 600;
     transition: all 0.3s ease;
     min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
   
   .btn:disabled {
@@ -340,19 +435,23 @@
     color: white;
   }
   
-  .btn-secondary:hover {
+  .btn-secondary:hover:not(:disabled) {
     background: #7f8c8d;
     transform: translateY(-2px);
   }
   
-  .btn-success {
-    background: #27ae60;
-    color: white;
+  .spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
   }
   
-  .btn-success:hover {
-    background: #219a52;
-    transform: translateY(-2px);
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
   
   .status-message {
@@ -370,6 +469,12 @@
     color: #27ae60;
   }
   
+  .status-message.error {
+    background: #f8e6e6;
+    border-left-color: #e74c3c;
+    color: #e74c3c;
+  }
+  
   .converted-info {
     background: #d5f4e6;
     border-radius: 8px;
@@ -383,9 +488,32 @@
     color: #27ae60;
   }
   
-  .converted-info p {
-    margin: 0.5rem 0;
+  .result-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #c8e6c9;
+  }
+  
+  .result-item:last-child {
+    border-bottom: none;
+  }
+  
+  .medicine-name {
+    font-weight: bold;
     color: #2c3e50;
+    font-size: 1.1rem;
+  }
+  
+  .confidence {
+    font-weight: bold;
+    color: #27ae60;
   }
   
   .section-break {
@@ -415,7 +543,7 @@
     height: auto;
     object-fit: contain;
     background: white;
-    }
+  }
 
   .medicine-details {
     border-left: 4px solid #0077cc;
@@ -437,7 +565,7 @@
 
   .medicine-details p,
   .medicine-details ul {
-    margin-bottom: 1rem; /* adds space below each paragraph and list */
+    margin-bottom: 1rem;
   }
   
   @media (max-width: 600px) {
@@ -457,6 +585,16 @@
     .btn {
       width: 100%;
       max-width: 200px;
+    }
+    
+    .file-preview {
+      flex-direction: column;
+    }
+    
+    .result-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
     }
   }
 </style>
