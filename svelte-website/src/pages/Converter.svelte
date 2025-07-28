@@ -85,7 +85,7 @@
     formData.append('file', selectedFile)
 
     try {
-      const response = await fetch('https://mediscribe-backend.onrender.com/predict', {
+      const response = await fetch('https://mediscribe-sepia.vercel.app/predict', {
         method: 'POST',
         body: formData
       })
