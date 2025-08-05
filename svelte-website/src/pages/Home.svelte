@@ -90,22 +90,30 @@
     </div>
 
     <div class="examples">
+      <span class="example-highlight">Examples</span>
       <div class="examples-container">
+
         <div class="example-block">
           <div class="example-content">
-            <p>Example 1</p>
+            <div class="image-box">
+              <img src="../src/assets/example1.png" alt="ex1" />
+            </div>
           </div>
         </div>
       
         <div class="example-block">
           <div class="example-content">
-            <p>Example 2</p>
+            <div class="image-box">
+              <img src="../src/assets/example2.png" alt="ex2" />
+            </div>
           </div>
         </div>
 
         <div class="example-block">
           <div class="example-content">
-            <p>Example 3</p>
+            <div class="image-box">
+              <img src="../src/assets/example3.png" alt="ex3" />
+            </div>
           </div>
         </div>
       </div>
@@ -224,7 +232,7 @@
   }
 
   .example-block {
-    background: linear-gradient(135deg, #efefef, #d1d1d1);
+    background: linear-gradient(135deg, #d9d8ff, #abaed2);
     border-radius: 12px;
     padding: 2rem;
     color: white;
@@ -237,7 +245,7 @@
 
   .example-block:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgb(39, 72, 172);
+    box-shadow: 0 12px 35px rgb(86, 106, 164);
   }
 
   .example-content {
@@ -246,17 +254,17 @@
 
   .example-highlight {
     display: block;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #fff;
+    color: #1f377fff;
   }
 
   .example-block p {
     font-size: 1rem;
     line-height: 1.5;
     margin: 0;
-    color: #000000f2;
+    color: #fffffff2;
   }
 
   .my-div {
@@ -283,6 +291,17 @@
     margin-top: 5rem;
     margin-bottom: 5rem;
     font-size: 3rem;
+  }
+
+  .image-box {
+    width: 200px;
+    height: auto;
+  }
+
+  .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
   }
 
 </style>
