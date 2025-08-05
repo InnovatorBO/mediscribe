@@ -16,13 +16,17 @@
   })
 </script>
 
+<svelte:head>
+  <title>Contact</title>
+</svelte:head>
+
 <div class="page contact-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
     <div class ="heading"> You can find us at</div>
-    <p class="insert-content">vel@velbranchout.org</p>
+    <p class="insert-content">www.velbranchout.org</p>
     <div class ="heading"> Email us at</div>
-    <p class="insert-content">velbranchout@gmail.com</p>
+    <p class="insert-content">team@velbranchout.org</p>
     <p class="page-info"></p>
   </div>
 </div>

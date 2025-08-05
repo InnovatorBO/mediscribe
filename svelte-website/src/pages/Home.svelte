@@ -3,6 +3,9 @@
   import Button from "../components/button.svelte";
   import Converter from './Converter.svelte'
   import { createEventDispatcher } from 'svelte'
+  import ex1 from '../assets/example1.png';
+  import ex2 from '../assets/example2.png';
+  import ex3 from '../assets/example3.png';
 
   const dispatch = createEventDispatcher()
   let clicked = false;
@@ -44,6 +47,11 @@
   // const dispatch = createEventDispatcher();
 
 </script>
+
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
+
 {#if currentPage === 'home'}
 <div class="page home-page">
   <div class="content-section">
@@ -71,41 +79,37 @@
     <!-- <div class="content">
       <svelte:component this={getCurrentPage()} />
     </div> -->
-    <div class = "button-container">
-      <Button to="converter" on:changePage={changePage}   style="
-      background-color: #1f377f;
-      color: white;
-      font-size: 1.8rem;
-      padding: 1.25rem 2.5rem;
-      font-weight: bold;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Oswald', sans-serif;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-      ">
-        Try it out for Free!
+    <div class="button-container">
+      <Button to="converter" on:changePage={changePage}>
+        Try it out for free!
       </Button>
     </div>
 
     <div class="examples">
+      <span class="example-highlight">Examples</span>
       <div class="examples-container">
+
         <div class="example-block">
           <div class="example-content">
-            <p>Example 1</p>
+            <div class="image-box">
+              <img src="{ex1}" alt="ex1" />
+            </div>
           </div>
         </div>
       
         <div class="example-block">
           <div class="example-content">
-            <p>Example 2</p>
+            <div class="image-box">
+              <img src="{ex2}" alt="ex2" />
+            </div>
           </div>
         </div>
 
         <div class="example-block">
           <div class="example-content">
-            <p>Example 3</p>
+            <div class="image-box">
+              <img src="{ex3}" alt="ex3" />
+            </div>
           </div>
         </div>
       </div>
@@ -224,7 +228,7 @@
   }
 
   .example-block {
-    background: linear-gradient(135deg, #efefef, #d1d1d1);
+    background: linear-gradient(135deg, #d9d8ff, #abaed2);
     border-radius: 12px;
     padding: 2rem;
     color: white;
@@ -237,7 +241,7 @@
 
   .example-block:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgb(39, 72, 172);
+    box-shadow: 0 12px 35px rgb(86, 106, 164);
   }
 
   .example-content {
@@ -246,17 +250,17 @@
 
   .example-highlight {
     display: block;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: #fff;
+    color: #1f377fff;
   }
 
   .example-block p {
     font-size: 1rem;
     line-height: 1.5;
     margin: 0;
-    color: #000000f2;
+    color: #fffffff2;
   }
 
   .my-div {
@@ -283,6 +287,17 @@
     margin-top: 5rem;
     margin-bottom: 5rem;
     font-size: 3rem;
+  }
+
+  .image-box {
+    width: 200px;
+    height: auto;
+  }
+
+  .image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
   }
 
 </style>
