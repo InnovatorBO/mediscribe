@@ -20,7 +20,7 @@ export const medicines = [
         "Panic Disorder: May go higher; often titrated up to 6 mg/day or more"
     ],
     sideEffects: "Drowsiness, Lightheadedness, Fatigue, Memory issues, Impaired coordination",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://cdn-lgcpd.nitrocdn.com/TSCHALlRJLVbkFIBNopOPNOBhJUYbHYZ/assets/images/optimized/rev-0ef40cf/ranchcreekrecovery.com/wp-content/uploads/2021/07/bigstock-Geneva-switzerland-326274919-1.jpg"
   },
   {
     label: "Tylenol",
@@ -36,7 +36,7 @@ export const medicines = [
         "Children: Dosage is based on weight and age, typically provided in liquid form"
     ],
     sideEffects: "Tylenol is generally well-tolerated at correct doses. Some rare side effects include allergic reactions (rashes, swelling, trouble breathing) and liver damage caused by overdose.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://images.squarespace-cdn.com/content/v1/56cdff5a1bbee0e1a2120339/1553898327223-CEHB75FBFC4SY4O3YWNL/transparent.jpg?format=1000w"
   },
   {
     label: "Adderall",
@@ -50,7 +50,7 @@ export const medicines = [
       "Taken orally, with or without food"
     ],
     sideEffects: "Headache, Loss of Appetite, Stomach Pain, Dry mouth, Trouble Sleeping, Increased Heart Rate, Nervousness/Anxiety",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://www.verywellhealth.com/thmb/eromaP-LsNpbBMFBGSoYSCQYRAA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Phenterminevs.Adderall-SimilaritiesDifferences-49a5b92682b648779557aea83266e846.jpg"
   },
   {
     label: "Adipex-P / Lomaira",
@@ -63,7 +63,7 @@ export const medicines = [
       "Lomaira: 8 mg per dose, up to 3 doses per day before meals"
     ],
     sideEffects: "Increased heart rate, high blood pressure, headache, dry mouth, insomnia, constipation, restlessness, confusion, heart valve disease",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://lifeivweightloss.com/wp-content/uploads/2024/12/adipex.png"
   },
   {
     label: "Ambien",
@@ -78,7 +78,7 @@ export const medicines = [
       "Take right before bed on an empty stomach"
     ],
     sideEffects: "Drowsiness, Dizziness, Headache, Next-day grogginess, Diarrhea, Nausea",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://www.verywellhealth.com/thmb/9_NBbyq8csu2YV8HoGgd7xAkvNc=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/VWH.GettyImages-103746124-06df23a826f34a6d93195bc448219d2a.jpg"
   },
   {
     label: "Lipitor",
@@ -91,7 +91,7 @@ export const medicines = [
       "Dose may vary based on individual risk profile"
     ],
     sideEffects: "Muscle and joint pain, diarrhea, nasopharyngitis, indigestion",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://static01.nyt.com/images/2013/07/12/science/11askwellheart/11askwellheart-square320.jpg?quality=75&auto=webp&disable=upscale"
   },
   {
     label: "Vicodin / Norco / Lortab",
@@ -106,7 +106,7 @@ export const medicines = [
       "Children (2–12): Weight-based, typically 0.135 mg/kg every 4–6 hours"
     ],
     sideEffects: "Dizziness, Drowsiness, Nausea, Constipation, Slowed breathing, Allergic reactions, Hallucinations, Withdrawal symptoms",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://irp-cdn.multiscreensite.com/71e80065/dms3rep/multi/vicodin.jpeg"
   },
   {
     label: "Amoxil / Trimox",
@@ -120,7 +120,7 @@ export const medicines = [
       "Can be taken with or without food"
     ],
     sideEffects: "Diarrhea, Nausea, Vomiting, Rash, Headache",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://nursing.unboundmedicine.com/nursingcentral/repview?type=277-263&name=amoxicillin_195-9029"
   },
   {
     label: "Adderall XR",
@@ -134,7 +134,7 @@ export const medicines = [
       "Dose individualized by patient"
     ],
     sideEffects: "Loss of appetite, Trouble sleeping, Dry mouth, Headache, Stomach pain",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://san.com/wp-content/uploads/2022/11/image-193.jpg?w=1000"
   },
   {
     label: "Neurontin",
@@ -148,7 +148,7 @@ export const medicines = [
       "Max dose: 1800 mg/day"
     ],
     sideEffects: "Drowsiness, Dizziness, Fatigue, Vision changes, Nausea, Dry mouth, Mood changes",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://assets.medpagetoday.net/media/images/116xxx/116456.jpg?width=0.8"
   },
   {
     label: "Protonix",
@@ -160,7 +160,7 @@ export const medicines = [
       "40 mg once daily for up to 8 weeks, vary per patient"
     ],
     sideEffects: "Headache, diarrhea, nausea, abdominal pain, flatulence",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://pharmaserve.com/wp-content/uploads/2018/05/protonix-1.jpg"
   },
   {
     label: "Klonopin",
@@ -173,7 +173,7 @@ export const medicines = [
       "Usually taken 1-3 times daily"
     ],
     sideEffects: "Drowsiness, dizziness, fatigue, poor coordination, memory/concentration issues, depression",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://www.solcohealthcare.com/wp-content/uploads/2019/08/Clonazepram.jpg"
   },
   {
     label: "Ultram",
@@ -188,7 +188,7 @@ export const medicines = [
       "For patients over 75 years old: maximum 300 mg per day"
     ],
     sideEffects: "Dizziness, drowsiness, nausea, constipation, headache, dry mouth",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRze2SVWM3jew-QfkKi2_rppuKOBh-blHlNQ&s"
   },
   {
     label: "Flexeril",
@@ -202,7 +202,7 @@ export const medicines = [
       "Taken orally, can be taken with or without food"
     ],
     sideEffects: "Drowsiness, dry mouth, dizziness, fatigue, headache, blurred vision",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://recovered.sfo3.cdn.digitaloceanspaces.com/media/17750/Cyclobenzaprine-Flexeril-Pills-in-Bottle.jpg?v=1753265476"
   },
   {
     label: "Zofran",
@@ -218,7 +218,7 @@ export const medicines = [
       "Can be taken with or without food"
     ],
     sideEffects: "Headache, constipation, fatigue or lightheadedness, diarrhea, drowsiness, dry mouth",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://m2.alhabibpharmacy.net/media/catalog/product/N/e/New_image_6090040011_0.jpg"
   },
   {
     label: "Prednisone",
@@ -230,7 +230,7 @@ export const medicines = [
       "Typical oral doses: 5 mg to 60 mg per day, individualized per patient"
     ],
     sideEffects: "Increased appetite and weight gain, insomnia, mood swings, anxiety, irritability, swelling (edema), high blood pressure, acne",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://www.hss.edu/globalassets/images/conditions/corticosteroid-prednisone-tablets-1200x628.jpg"
   },
   {
     label: "Augmentin",
@@ -244,7 +244,7 @@ export const medicines = [
       "Taken orally, with food to reduce upset stomach"
     ],
     sideEffects: "Diarrhea, nausea, vomiting, rash, stomach pain",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://www.empr.com/wp-content/uploads/sites/7/2018/12/61cdffbedcc747e3be1ca1d70e6d1b5d-augmentin_39664.jpg"
   },
   {
     label: "Prinivil / Zestril",
@@ -260,7 +260,7 @@ export const medicines = [
       "Taken once daily, with or without food"
     ],
     sideEffects: "Dry cough (persistent, non-productive), dizziness or lightheadedness (especially at start), headache, fatigue",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://www.empr.com/wp-content/uploads/sites/7/2018/12/fa124a0e58de48bc866fd0761089caa5-prinivil_391993.jpg"
   },
   {
     label: "Zithromax / Z-Pak",
@@ -276,7 +276,7 @@ export const medicines = [
       "Can be taken with or without food"
     ],
     sideEffects: "Diarrhea, nausea, stomach pain or cramps, headache, vomiting, dizziness or fatigue, changes in taste",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://abcnews.go.com/images/Health/ht_zithromax_jef_130312_wblog.jpg"
   },
   {
     label: "Ventolin / ProAir / Proventil",
@@ -292,6 +292,6 @@ export const medicines = [
       "Tablet/syrup: Rarely used; doses vary by age/weight"
     ],
     sideEffects: "Tremors or shakiness, nervousness or anxiety, rapid heart rate, headache, throat irritation, muscle cramps, insomnia, dizziness",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tablet_Icon.svg/512px-Tablet_Icon.svg.png"
+    image: "https://www.empr.com/wp-content/uploads/sites/7/2018/12/adde616564964d4e8471d34d012c7038-proventil_29137.jpg"
   }
 ];
