@@ -44,6 +44,11 @@
   // const dispatch = createEventDispatcher();
 
 </script>
+
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
+
 {#if currentPage === 'home'}
 <div class="page home-page">
   <div class="content-section">
@@ -85,7 +90,7 @@
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease;
       ">
-        Try it out for Free!
+           Try it out for Free!   
       </Button>
     </div>
 

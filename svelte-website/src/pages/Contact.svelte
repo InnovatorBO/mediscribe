@@ -16,6 +16,10 @@
   })
 </script>
 
+<svelte:head>
+  <title>Contact</title>
+</svelte:head>
+
 <div class="page contact-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
