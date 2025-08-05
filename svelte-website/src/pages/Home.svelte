@@ -79,21 +79,9 @@
     <!-- <div class="content">
       <svelte:component this={getCurrentPage()} />
     </div> -->
-    <div class = "button-container">
-      <Button to="converter" on:changePage={changePage}   style="
-      background-color: #1f377f;
-      color: white;
-      font-size: 1.8rem;
-      padding: 1.25rem 2.5rem;
-      font-weight: bold;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      font-family: 'Oswald', sans-serif;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-      ">
-           Try it out for Free!   
+    <div class="button-container">
+      <Button to="converter" on:changePage={changePage}>
+        Try it out for free!
       </Button>
     </div>
 
