@@ -3,6 +3,9 @@
   import Button from "../components/button.svelte";
   import Converter from './Converter.svelte'
   import { createEventDispatcher } from 'svelte'
+  import ex1 from '../assets/example1.png';
+  import ex2 from '../assets/example2.png';
+  import ex3 from '../assets/example3.png';
 
   const dispatch = createEventDispatcher()
   let clicked = false;
@@ -101,7 +104,7 @@
         <div class="example-block">
           <div class="example-content">
             <div class="image-box">
-              <img src="../src/assets/example1.png" alt="ex1" />
+              <img src="{ex1}" alt="ex1" />
             </div>
           </div>
         </div>
@@ -109,7 +112,7 @@
         <div class="example-block">
           <div class="example-content">
             <div class="image-box">
-              <img src="../src/assets/example2.png" alt="ex2" />
+              <img src="{ex2}" alt="ex2" />
             </div>
           </div>
         </div>
@@ -117,7 +120,7 @@
         <div class="example-block">
           <div class="example-content">
             <div class="image-box">
-              <img src="../src/assets/example3.png" alt="ex3" />
+              <img src="{ex3}" alt="ex3" />
             </div>
           </div>
         </div>
