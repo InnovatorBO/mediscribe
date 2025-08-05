@@ -16,6 +16,10 @@
   })
 </script>
 
+<svelte:head>
+  <title>About Us</title>
+</svelte:head>
+
 <div class="page about-page">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
@@ -26,8 +30,8 @@
     <p class="insert-content">Our mission with MediScribe is to ensure safety in healthcare by solving the critical problem of illegible medical handwriting. Misreading a doctor’s notes can lead to dangerous mistakes, such as delayed treatments and miscommunication between patients and doctors. A 2005 study in a British hospital revealed that only 24% of handwritten operative notes were rated as “excellent” or “good,” while a shocking 37% were considered “poor.” These concerning statistics highlight the urgent need for change. MediScribe was created to ensure that every prescription, diagnosis, and instruction is clearly understood, because in healthcare, clarity can save lives.</p>
     
   <div class = "heading">About BranchOut! (Our Team)</div>
-    <p class="insert-content">BranchOut is a student led non-profit organization promoting STEM learning through fostering cultural understanding and civic engagement. Our goal is to inspire a passion for learning through connections between communities, creating and maintaining safe spaces for innovation, collaboration, and support.</p>
-    <p class = "insert-content">Regarding the BranchOut Innovator program specifically, participants use their programming, design, and marketing skills in order to create an online application with a specific task to accomplish. This project-based program also is designed for participants to use their creativity skills to create this effective and unique project.</p>
+    <p class="insert-content">BranchOut! is a student led non-profit organization promoting STEM learning through fostering cultural understanding and civic engagement. Our goal is to inspire a passion for learning through connections between communities, creating and maintaining safe spaces for innovation, collaboration, and support.</p>
+    <p class = "insert-content">Regarding the BranchOut! Innovator program specifically, participants use their programming, design, and marketing skills in order to create an online application with a specific task to accomplish. This project-based program also is designed for participants to use their creativity skills to create this effective and unique project.</p>
     <p class="page-info"></p>
   </div>
 </div>

@@ -135,6 +135,10 @@
   })
 </script>
 
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
+
 <div class="page converter">
   <div class="content-section">
     <h1 class="page-heading">{heading || 'Loading...'}</h1>
