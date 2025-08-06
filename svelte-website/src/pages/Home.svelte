@@ -109,7 +109,7 @@
         <div class="example-block">
           <div class="example-content">
             <div class="image-box">
-              <img src="{examples.image}" alt="{example.alt}" />
+              <img src="{example.image}" alt="{example.alt}" />
             </div>
             <div class = "text-overlay">
               <p>{example.text}</p>
@@ -303,6 +303,10 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+  }
+
+  .example-block {
+    position: relative;
   }
 
   .text-overlay {
