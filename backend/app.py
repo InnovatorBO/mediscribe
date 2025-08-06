@@ -5,7 +5,7 @@ import os
 from main import predict_image
 
 app = Flask(__name__)
-CORS(app, origins=["https://mediscribe-sepia.vercel.app", "http://localhost:5173", "http://localhost:3000"], supports_credentials=True)
+CORS(app, origins=["https://mediscribe-bo.vercel.app", "http://localhost:5173", "http://localhost:3000"], supports_credentials=True)
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff'}

@@ -35,17 +35,17 @@
     {
       image: ex1,
       alt: "ex1",
-      text: "Slay",
+      text: "Odmon",
     },
     {
       image: ex2,
       alt: "ex2",
-      text: "Slay",
+      text: "Azithrocin",
     },
     {
       image: ex3,
       alt: "ex3",
-      text: "Slay",
+      text: "Aceta",
     },
   ]
 
