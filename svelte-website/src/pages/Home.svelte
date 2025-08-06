@@ -31,6 +31,24 @@
     currentPage = event.detail
   }
 
+  const examples = [
+    {
+      image: ex1,
+      alt: "ex1",
+      text: "Slay",
+    },
+    {
+      image: ex2,
+      alt: "ex2",
+      text: "Slay",
+    },
+    {
+      image: ex3,
+      alt: "ex3",
+      text: "Slay",
+    },
+  ]
+
   function getCurrentPage() {
     switch (currentPage) {
       case 'converter':
@@ -86,32 +104,19 @@
     </div>
 
     <div class="examples">
-      <span class="example-highlight">Examples</span>
       <div class="examples-container">
-
+        {#each examples as example}
         <div class="example-block">
           <div class="example-content">
             <div class="image-box">
-              <img src="{ex1}" alt="ex1" />
+              <img src="{examples.image}" alt="{example.alt}" />
+            </div>
+            <div class = "text-overlay">
+              <p>{example.text}</p>
             </div>
           </div>
         </div>
-      
-        <div class="example-block">
-          <div class="example-content">
-            <div class="image-box">
-              <img src="{ex2}" alt="ex2" />
-            </div>
-          </div>
-        </div>
-
-        <div class="example-block">
-          <div class="example-content">
-            <div class="image-box">
-              <img src="{ex3}" alt="ex3" />
-            </div>
-          </div>
-        </div>
+        {/each}
       </div>
       </div>
       </div>
@@ -299,5 +304,37 @@
     height: 100%;
     object-fit: fill;
   }
+
+  .text-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+  background: rgba(31, 55, 127, 0.95);
+  border-radius: 8px;
+}
+
+.text-overlay p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin: 0;
+  color: white;
+  text-align: center;
+}
+
+.example-block:hover .image-box {
+  opacity: 0;
+}
+
+.example-block:hover .text-overlay {
+  opacity: 1;
+}
 
 </style>

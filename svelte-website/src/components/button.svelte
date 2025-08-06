@@ -31,13 +31,13 @@
   
   .button.primary {
     color: #fff;
-    background: linear-gradient(90deg, #288ee0 0%, #5bb0f5 50%, #288ee0 85%);
+    background: linear-gradient(90deg, rgb(27, 50, 121) 0%, rgb(58, 89, 182) 50%, #1f377fff 85%);
     background-size: 200% auto;
   }
   
   .button:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(40, 142, 224, 0.8);
+    box-shadow: 0 0 20px rgb(79, 115, 224);
     background-position: right center;
   }
 
