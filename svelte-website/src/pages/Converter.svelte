@@ -136,7 +136,7 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
+  <title>Converter</title>
 </svelte:head>
 
 <div class="page converter">
